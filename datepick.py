@@ -3,16 +3,16 @@ import datetime
 from flask import Flask, render_template, request
 from cal_day import calday
 
-conn = pymysql.connect(
+def datepick(db_password):
+
+    conn = pymysql.connect(
        host='127.0.0.1',
        port=3306,
        user='root',
-       password='gml040708',
+       password=db_password,
        db='test')
 
-curs = conn.cursor()
-
-def datepick():
+    curs = conn.cursor()
 
     m_day = request.args.get('m_day')
     m_day = str(m_day)

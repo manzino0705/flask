@@ -15,9 +15,11 @@ python run.py
 template 
     common
         - navbar.html  : 사이드 네비 바 관련 html 파일  
-- index.html ( 날짜 선택 page ) 
-- indextest.html ( 선택 기간 내 data 받아온 page -> chart 그려야 함 ) 
+- index.html ( 날짜 선택 page )  
+- indextest.html ( 선택 기간 내 data 받아온 page -> chart 그려야 함 )  
+- **_start.html ( 각 인프라 최근 사용량 출력 --> 기간 선택 시, lookup.html로 이동 )  
+- **_lookup.html ( 각 인프라 기간 별 조회 )  
 
-run.py  ( flask 실행 파일 )  
-cal_day.py ( 기간 내 db 조회)  
-datepick.py (  )
+run.py  ( flask 실행 파일 )   
+cal_day.py ( 기간 내 db 조회)   
+datepick.py (  )   

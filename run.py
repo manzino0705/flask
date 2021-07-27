@@ -47,7 +47,7 @@ def detail_vm():
         data_list.append( [obj[0],obj[1],obj[2]] )
             # 날짜, CPU, disk 순서 
 
-    return render_template('index.html',data_list=data_list , today=str(to_day))
+    return render_template('detail_vm.html',data_list=data_list , today=str(to_day))
 
 @app.route('/indextest', methods=['GET'])
 def indextest():

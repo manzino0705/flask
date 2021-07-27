@@ -1,0 +1,190 @@
+{% extends "./common/navbar.html"%}
+{%block contents%}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">VR Monitoring</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3">
+          <!-- Date Range Picker Example-->
+          <!-- 달력  -->
+          <form method="GET" action="/vm_lookup">
+            <div class="input-group input-group-joined" style="width: 16.5rem;">
+              <input type=text class="form-control ps-0" id="datepicker" name="m_day"
+                placeholder="Select date range..." />
+              <button type="submit"> <i class="far fa-calendar"></i></button>
+            </div>
+          </form>
+
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>  <!--아이콘-->
+                VR CPU monitoring
+              </h3>
+              <div class="card-tools">
+                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
+              </div>
+            </div>
+      
+            <div class="card-body">
+            <!-- 차트 그리는 곳  -->
+              <div class="position-relative mb-4">
+                  <canvas id="CpuChart" height="200"></canvas>
+              </div>
+              <!-- 맨 밑에 주석  -->
+              <div class="d-flex flex-row justify-content-end">
+                <span class="mr-1">
+                  <i class="fas fa-square text-primary"></i> CPU
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- /.card -->
+
+        <!-- /.col-md-6 -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>  
+                VR Disk monitoring
+              </h3>
+              <div class="card-tools">
+                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
+              </div>
+            </div>
+            
+  
+            <div class="card-body">
+            <!-- 차트 그리는 곳  -->
+              <div class="position-relative mb-4">
+                  <canvas id="DiskChart" height="200"></canvas>
+              </div>
+  
+              <!-- 맨 밑에 주석  -->
+              <div class="d-flex flex-row justify-content-end">
+                <span class="mr-1">
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Disk 
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col-md-6 -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+
+
+
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="/static/plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+
+<!-- 차트 그리기  -->
+
+
+<script src=="/static/plugins/chart/Chart.js"></script>
+<script>
+  var ctx = document.getElementById('CpuChart');
+  const data = '{{data_list}}';
+  var z = /&\#39;/gi
+  var y = /[\[\]]/gi
+
+  n_data = data.replace(z, "");
+  nn_data = n_data.replace(y, "");
+
+  var data_list = nn_data.split(', ')  // 2021-07-23 00:00:00, 10, 34, 2021-07-23 00:00:15, 40, 13
+  var my_label = [];
+  var my_cpu_data = [];
+
+  for (let i = 0; i < data_list.length; i++) {
+    if (i % 3 == 0) { // 날짜 
+      my_label.push(data_list[i].slice(11, 19));
+    }
+    else if (i % 3 == 1) { // cpu 
+      my_cpu_data.push(data_list[i]);
+    }
+  }
+
+  var visitorsChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: my_label,
+      datasets: [{
+        label: 'cpu data',
+        data: my_cpu_data,
+        borderColor: 'rgb(75, 192, 192)',
+        borderColor: '#007bff',
+        pointBorderColor: '#007bff',
+        pointBackgroundColor: '#007bff',
+        fill: false
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      }
+    }
+  });
+</script>
+
+<script>
+  var ctx = document.getElementById('DiskChart');
+  var my_disk_data = [];
+
+  for (let i = 0; i < data_list.length; i++) {
+    if (i % 3 == 2) { // disk
+      my_disk_data.push(data_list[i]);
+    }
+  }
+
+  var visitorsChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: my_label,
+      datasets: [{
+        label: 'disk data',
+        data: my_disk_data,
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: '#ced4da',
+        // borderColor: '#ced4da',
+        pointBorderColor: '#ced4da',
+        pointBackgroundColor: '#ced4da',
+        fill: false
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      }
+    }
+  });
+</script>
+{%endblock%}

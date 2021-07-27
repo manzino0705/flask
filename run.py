@@ -81,5 +81,46 @@ def cnodelookup():
     return render_template('cnode_lookup.html', data_list=data_list , start=start, end=end )
 
 
+# storage page 
+@app.route('/storage_start')
+def storagestart():
+    global to_day, today_data_list
+    return render_template('storage_start.html',data_list=today_data_list , today=str(to_day))
+
+
+@app.route('/storage_lookup', methods=['GET'])
+def storagelookup():
+    data_list, start, end = datepick(db_password)
+    return render_template('storage_lookup.html', data_list=data_list , start=start, end=end )
+
+
+# NW page 
+@app.route('/nw_start')
+def nwstart():
+    global to_day, today_data_list
+    return render_template('nw_start.html',data_list=today_data_list , today=str(to_day))
+
+
+@app.route('/nw_lookup', methods=['GET'])
+def nwlookup():
+    data_list, start, end = datepick(db_password)
+    return render_template('nw_lookup.html', data_list=data_list , start=start, end=end )
+
+
+# LB page 
+@app.route('/lb_start')
+def lbstart():
+    global to_day, today_data_list
+    return render_template('lb_start.html',data_list=today_data_list , today=str(to_day))
+
+
+@app.route('/lb_lookup', methods=['GET'])
+def lblookup():
+    data_list, start, end = datepick(db_password)
+    return render_template('lb_lookup.html', data_list=data_list , start=start, end=end )
+
+
+
+
 if __name__ == '__main__' :
     app.run(host='127.0.0.1', port=5050, debug=True) 

@@ -14,7 +14,7 @@
         <div class="col-sm-3">
           <!-- Date Range Picker Example-->
           <!-- 달력  -->
-          <form method="GET" action="/cnode_lookup">
+          <form method="GET" action="/lb_lookup">
             <div class="input-group input-group-joined" style="width: 16.5rem;">
               <input type=text class="form-control ps-0" id="datepicker" name="m_day"
                 placeholder="Select date range..." />
@@ -37,7 +37,7 @@
               <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
                 <!--아이콘-->
-                C-node CPU monitoring
+                LB CCC monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
@@ -52,7 +52,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square text-primary"></i> CPU
+                  <i class="fas fa-square text-primary"></i> CCC
                 </span>
               </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
-                C-node Disk monitoring
+                LB Traffic monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
@@ -81,7 +81,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Disk
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Traffic
                 </span>
               </div>
             </div>

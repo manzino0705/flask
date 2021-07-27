@@ -34,13 +34,6 @@ def index():
 
     return render_template('index.html',data_list=data_list , today=str(to_day))
 
-
-@app.route('/indextest', methods=['GET'])
-def indextest():
-    data_list, start, end = datepick(db_password)
-    return render_template('indextest.html', data_list=data_list , start=start, end=end )
-
-
 # 오늘 날짜 계산하기! 
 to_day = datetime.datetime.today()  
 today_sql = "select * from flask where date like '"+ str(to_day)[:10] +"%'"

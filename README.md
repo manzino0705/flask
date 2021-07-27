@@ -5,7 +5,7 @@ EPC 서비스 이상징후 점검을 위한 Cloud 인프라 점검 자동화
 
 
 python -m venv venv  
-source .venv/Scripts/activate  
+source venv/Scripts/activate  
 python -m pip install --upgrade pip  
 pip install -r requirements.txt  
 python run.py  
@@ -13,7 +13,11 @@ python run.py
 ## 현재 진행 상황 
 
 template 
+    common
+        - navbar.html  : 사이드 네비 바 관련 html 파일  
 - index.html ( 날짜 선택 page ) 
 - indextest.html ( 선택 기간 내 data 받아온 page -> chart 그려야 함 ) 
 
 run.py  ( flask 실행 파일 )  
+cal_day.py ( 기간 내 db 조회)  
+datepick.py (  )

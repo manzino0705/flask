@@ -22,24 +22,45 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-4">
-          <div class="callout callout-info">
-            <a href="/vm_start" class="nav-link">
-            <h5>VM</h5>
+            <div class="callout callout-info">
+                <h4>Total Resource</h4><br>
 
-            <p>Follow the steps to continue to payment.</p>
-            <canvas id="vmChart" width="100px" height="100px"></canvas>
+                <h5 class="text-muted" style="display:inline">Server</h5>
+                &nbsp; &nbsp; &nbsp;
+                <strong class="h5" style="display:inline"> &nbsp; &nbsp; &nbsp;67</strong> 
+                &nbsp; &nbsp; &nbsp; &nbsp;
 
-          </a>
-          </div>
+                <h5 class="text-muted" style="display:inline">Loadbalancer</h5>
+                &emsp; &nbsp; &nbsp;
+                <strong class="h5" style="display:inline"> &nbsp; &nbsp;67</strong> <br>
+
+                <h5 class="text-muted" style="display:inline">VR</h5>
+                &emsp; &nbsp; &nbsp;
+                <strong class="h5" style="display:inline">67</strong> 
+                &emsp;&emsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <h5 class="text-muted" style="display:inline">Switch </h5><strong class="h5" style="display:inline">67</strong> <br>
+
+                <h5 class="text-muted" style="display:inline">C-node</h5>
+                &emsp;
+                <strong class="h5" style="display:inline">67</strong> 
+                &emsp; &nbsp; &nbsp; &nbsp;
+                <h5 class="text-muted" style="display:inline">Storage  </h5><strong class="h5" style="display:inline">67</strong> <br> 
+            </div>
+
+
+            <div class="callout callout-info">
+                <a href="/vm_start" class="nav-link">
+                    <h5>VM</h5>
+                    <canvas id="vmChart" width="100px" height="100px"></canvas>
+                </a>
+            </div>
           
-          <div class="callout callout-info">
-            <a href="/storage_start" class="nav-link">
-            <h5>Storage</h5>
-
-            <p>Follow the steps to continue to payment.</p>
-          </a>
-          </div>
-          <!-- /.card -->
+            <div class="callout callout-info">
+                <a href="/storage_start" class="nav-link">
+                    <h5>Storage</h5>
+                </a>
+            </div>
+            <!-- /.card -->
         </div>
         <!-- /.card -->
         <div class="col-lg-4">
@@ -92,48 +113,50 @@
   <!-- OPTIONAL SCRIPTS -->
   <script src="/static/plugins/chart.js/Chart.min.js"></script>
   <!-- 차트 그리기  -->
-  <!-- 차트 그리기  -->
 
   <script src=="/static/plugins/chart/Chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 
   <script>
-  var ctx = document.getElementById("vmChart");
-var chartData = {
-  labels: [
-    "CPU",
-    "Memory",
-    ""
-  ],
-  datasets: [{
-    data: [50,0,50],
-    backgroundColor: [
-    "#36A2EB",
-    "#FFFFFF",
-    ]
-  }, {
-    data: [20],
-    backgroundColor: [
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56",
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56"
-    ],
-    hoverBackgroundColor: [
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56",
-      "#FF6384",
-      "#36A2EB",
-      "#FFCE56"
-    ]
-  }]
-};
-var pieChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: chartData
-})</script>
+    var ctx = document.getElementById("vmChart");
+    var chartData = {
+        labels: [
+            "Running",
+            "Halted",
+            ""
+        ],
+        datasets: [{
+            data: [50,0,50],
+            backgroundColor: [
+            "#36A2EB",
+            "#FFFFFF",
+            ]
+        }, {
+            data: [20],
+            backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+            ]
+        }]
+        };
+    var pieChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: chartData
+    })
+
+
+</script>
 
   {%endblock%}

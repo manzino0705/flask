@@ -1,0 +1,139 @@
+{% extends "./common/navbar.html"%}
+{%block contents%}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Total Monitoring</h1>
+        </div><!-- /.col -->
+        
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <!-- Main content -->
+  <!-- Main content -->
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="callout callout-info">
+            <a href="/vm_start" class="nav-link">
+            <h5>VM</h5>
+
+            <p>Follow the steps to continue to payment.</p>
+            <canvas id="vmChart" width="100px" height="100px"></canvas>
+
+          </a>
+          </div>
+          
+          <div class="callout callout-info">
+            <a href="/storage_start" class="nav-link">
+            <h5>Storage</h5>
+
+            <p>Follow the steps to continue to payment.</p>
+          </a>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.card -->
+        <div class="col-lg-4">
+          <div class="callout callout-info">
+            <a href="/vr_start" class="nav-link">
+            <h5>VR</h5>
+
+            <p>Follow the steps to continue to payment.</p>
+          </a>
+          </div>
+          <div class="callout callout-info">
+            <a href="/nw_start" class="nav-link">
+            <h5>N/W</h5>
+
+            <p>Follow the steps to continue to payment.</p>
+          </a>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
+        <div class="col-lg-4">
+          <div class="callout callout-info">
+            <a href="/cnode_start" class="nav-link">
+            <h5>Cnode</h5>
+
+            <p>Follow the steps to continue to payment.</p>
+          </a>
+          </div>
+          
+          
+          <div class="callout callout-info">
+            <a href="/lb_start" class="nav-link">
+            <h5>LB</h5>
+
+            <p>Follow the steps to continue to payment.</p>
+          </a>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col-md-6 -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="/static/plugins/chart.js/Chart.min.js"></script>
+  <!-- 차트 그리기  -->
+  <!-- 차트 그리기  -->
+
+  <script src=="/static/plugins/chart/Chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
+  <script>
+  var ctx = document.getElementById("vmChart");
+var chartData = {
+  labels: [
+    "CPU",
+    "Memory",
+    ""
+  ],
+  datasets: [{
+    data: [50,0,50],
+    backgroundColor: [
+    "#36A2EB",
+    "#FFFFFF",
+    ]
+  }, {
+    data: [20],
+    backgroundColor: [
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56",
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56"
+    ],
+    hoverBackgroundColor: [
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56",
+      "#FF6384",
+      "#36A2EB",
+      "#FFCE56"
+    ]
+  }]
+};
+var pieChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: chartData
+})</script>
+
+  {%endblock%}

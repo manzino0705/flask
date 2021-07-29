@@ -19,21 +19,6 @@ curs = conn.cursor()
 # Flask App 생성
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    to_day = datetime.datetime.today()      # index 9 까지 2021-07-26 
-    sql = "select * from flask where date like '"+ str(to_day)[:10] +"%'"
-
-    data_list = []
-    curs.execute(sql)
-    row = curs.fetchall()
-
-    for obj in row :
-        data_list.append( [obj[0],obj[1],obj[2]] )
-            # 날짜, CPU, disk 순서 
-
-    return render_template('index.html',data_list=data_list , today=str(to_day))
-
 # 오늘 날짜 계산하기! 
 to_day = datetime.datetime.today()  
 today_sql = "select * from flask where date like '"+ str(to_day)[:10] +"%'"
@@ -42,6 +27,11 @@ curs.execute(today_sql)
 row = curs.fetchall()
 for obj in row :
     today_data_list.append( [obj[0],obj[1],obj[2]] )
+
+@app.route('/')
+def index():
+    global to_day, today_data_list
+    return render_template('index.html',data_list=today_data_list , today=str(to_day))
 
 
 # vm page 

@@ -52,7 +52,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square text-primary"></i> CPU
+                  <i class="fas fa-square text-primary"></i> CPU(%)
                 </span>
               </div>
             </div>
@@ -81,7 +81,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Disk
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(GB)
                 </span>
               </div>
             </div>
@@ -143,6 +143,15 @@
       options: {
         legend: {
           display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true, 
+            ticks: {
+              beginAtZero: true, 
+              suggestedMax: 100
+            }
+          }]
         }
       }
     });
@@ -176,6 +185,15 @@
       options: {
         legend: {
           display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true, 
+            ticks: {
+              beginAtZero: true, 
+              suggestedMax: 100
+            }
+          }]
         }
       }
     });

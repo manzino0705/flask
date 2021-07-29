@@ -124,11 +124,16 @@
   var my_label = [];
   var my_cpu_data = [];
 
-  for (let i = 0; i < data_list.length; i++) {
-    if (i % 3 == 0) { // 날짜 
-      my_label.push(data_list[i].slice(11, 19));
+  for ( let i=0; i< data_list.length; i++){
+    if ( i%3==0 ){ // 날짜 
+      if ( data_list[i].slice(11,19) == '00:00:00'){  // 시작날이면 
+        my_label.push(data_list[i]);
+      }
+      else{
+        my_label.push(data_list[i].slice(11,19));
+      }
     }
-    else if (i % 3 == 1) { // cpu 
+    else if (i%3==1){ // cpu 
       my_cpu_data.push(data_list[i]);
     }
   }
@@ -150,7 +155,16 @@
     options: {
       legend: {
         display: false
-      }
+      },
+        scales: {
+          yAxes: [{
+            display: true, 
+            ticks: {
+              beginAtZero: true, 
+              suggestedMax: 100
+            }
+          }]
+        }
     }
   });
 </script>
@@ -183,7 +197,16 @@
     options: {
       legend: {
         display: false
-      }
+      },
+        scales: {
+          yAxes: [{
+            display: true, 
+            ticks: {
+              beginAtZero: true, 
+              suggestedMax: 100
+            }
+          }]
+        }
     }
   });
 </script>

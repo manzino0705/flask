@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">VM Monitoring</h1>
+          <h1 class="m-0">VM Current Monitoring</h1>
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">
@@ -52,7 +52,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square text-primary"></i> CPU
+                  <i class="fas fa-square text-primary"></i> CPU(%)
                 </span>
               </div>
             </div>
@@ -65,8 +65,8 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <i class="far fa-compact-disc"></i>
-                VM Disk monitoring
+                <i class="far fa-chart-bar"></i>
+                VM Memory monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
@@ -81,7 +81,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Disk
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(GB)
                 </span>
               </div>
             </div>
@@ -143,8 +143,19 @@
       options: {
         legend: {
           display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true, 
+            ticks: {
+              beginAtZero: true, 
+              suggestedMax: 100
+            }
+          }]
         }
+
       }
+      
     });
   </script>
 
@@ -176,6 +187,15 @@
       options: {
         legend: {
           display: false
+        },
+        scales: {
+          yAxes: [{
+            display: true, 
+            ticks: {
+              beginAtZero: true, 
+              suggestedMax: 100
+            }
+          }]
         }
       }
     });

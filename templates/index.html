@@ -20,39 +20,44 @@
   <!-- Main content -->
   <div class="content">
     <div class="container-fluid">
+      <div class="callout callout-info" style="padding:2% 5%">
+        <h4>Total Resource</h4><br>
+        <div>
+            <table width="100%" style="table-layout:fixed; text-align:center;">
+              <tr>
+                <td><h5 class="text-muted" style="display:inline">VM</h5></td>
+                <td align=center><strong class="h5" style="display:inline">67</strong></td>
+                <td><h5 class="text-muted" style="display:inline">VR</h5></td>
+                <td align=center><strong class="h5" style="display:inline">67</strong></td>
+                <td><h5 class="text-muted" style="display:inline">C-node</h5></td>
+                <td align=center><strong class="h5" style="display:inline">67</strong></td>
+              </tr>
+              <tr>
+                <td><h5 class="text-muted" style="display:inline">Storage</h5></td>
+                <td align=center><strong class="h5" style="display:inline">67</strong></td>
+                <td><h5 class="text-muted" style="display:inline">Switch </h5></td>
+                <td align=center><strong class="h5" style="display:inline">67</strong></td>
+                <td><h5 class="text-muted" style="display:inline">Loadbalancer</h5></td>
+                <td align=center><strong class="h5" style="display:inline">67</strong></td>
+              </tr>
+            </table>
+          <!-- /.card -->
+        </div>
+        
+        
+
+    </div>
+
       <div class="row">
         <div class="col-lg-4">
-            <div class="callout callout-info">
-                <h4>Total Resource</h4><br>
-
-                <h5 class="text-muted" style="display:inline">Server</h5>
-                &nbsp; &nbsp; &nbsp;
-                <strong class="h5" style="display:inline"> &nbsp; &nbsp; &nbsp;67</strong> 
-                &nbsp; &nbsp; &nbsp; &nbsp;
-
-                <h5 class="text-muted" style="display:inline">Loadbalancer</h5>
-                &emsp; &nbsp; &nbsp;
-                <strong class="h5" style="display:inline"> &nbsp; &nbsp;67</strong> <br>
-
-                <h5 class="text-muted" style="display:inline">VR</h5>
-                &emsp; &nbsp; &nbsp;
-                <strong class="h5" style="display:inline">67</strong> 
-                &emsp;&emsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <h5 class="text-muted" style="display:inline">Switch </h5><strong class="h5" style="display:inline">67</strong> <br>
-
-                <h5 class="text-muted" style="display:inline">C-node</h5>
-                &emsp;
-                <strong class="h5" style="display:inline">67</strong> 
-                &emsp; &nbsp; &nbsp; &nbsp;
-                <h5 class="text-muted" style="display:inline">Storage  </h5><strong class="h5" style="display:inline">67</strong> <br> 
-
-            </div>
-
+            
 
             <div class="callout callout-info">
                 <a href="/vm_start" class="nav-link">
                     <h5>VM</h5>
                     <canvas id="vmChart" width="100px" height="100px"></canvas>
+
+
                 </a>
             </div>
           
@@ -74,7 +79,7 @@
           </div>
           <div class="callout callout-info">
             <a href="/nw_start" class="nav-link">
-            <h5>N/W</h5>
+            <h5>Switch</h5>
 
             <p>Follow the steps to continue to payment.</p>
           </a>
@@ -85,6 +90,7 @@
           <div class="callout callout-info">
             <a href="/cnode_start" class="nav-link">
             <h5>Cnode</h5>
+            <!--<canvas id="switchChart" width="100px" height="100px"></canvas>-->
 
             <p>Follow the steps to continue to payment.</p>
           </a>
@@ -93,7 +99,7 @@
           
           <div class="callout callout-info">
             <a href="/lb_start" class="nav-link">
-            <h5>LB</h5>
+            <h5>Loadbalancer</h5>
 
             <p>Follow the steps to continue to payment.</p>
           </a>
@@ -159,5 +165,46 @@
 
 
 </script>
-
-  {%endblock%}
+<!--
+<script>  
+    var ctx2 = document.getElementById("switchChart");
+const labels = Utils.months({count: 7});
+const data = {
+  labels: labels,
+  datasets: [{
+    axis: 'y',
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56, 55, 40],
+    fill: false,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};
+const config2 = {
+  type: 'bar',
+  data,
+  options: {
+    indexAxis: 'y',
+  }
+};
+var barchart = new Chart(ctx2,config2);
+</script>
+-->
+{%endblock%}

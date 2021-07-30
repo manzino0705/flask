@@ -1,5 +1,8 @@
 # [EPC monitoring]
-EPC 서비스 이상징후 점검을 위한 Cloud 인프라 점검 자동화
+EPC 서비스 이상징후 점검을 위한 Cloud 인프라 점검 자동화  
+
+- VM, VR, Cnode 의 CPU, mem 분석   
+- LB, Storage, NW 분석  
 
 ## 기본 setting 
 

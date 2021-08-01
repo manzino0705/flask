@@ -13,6 +13,8 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt  
 python run.py  
 
+internet => 127.0.0.1 조회 
+
 ## 현재 진행 상황 
 
 template  
@@ -26,3 +28,4 @@ common
 run.py  ( flask 실행 파일 )   
 cal_day.py ( 기간 내 db 조회)   
 datepick.py (  )   
+search.py  ( 조회할 인프라 찾아서 오늘 data 조회, db 이름: 인프라명/ table 이름: 개체명 )

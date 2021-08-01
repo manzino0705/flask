@@ -5,7 +5,7 @@
 import datetime
 import re
 
-def calday( start, end ):
+def calday( start, end, id ):
 
     sqls=[]
 
@@ -13,14 +13,11 @@ def calday( start, end ):
     e_day = datetime.datetime.strptime(re.sub("\-","",end), "%Y%m%d")
 
     diff = str(e_day - s_day) 
-    # diff = 2 days, 0:00:00 
+    # diff = 2 days, 00:00:00 
 
     for i in range( int(diff[0])+1 ):
         n_day =  s_day + datetime.timedelta(days=i)
-
-        sqls.append( "select * from flask where date like '"+ str(n_day)[:10] +"%'"  )
-    
+        sqls.append( "select * from "+id+" where DATE like '"+ str(n_day)[:10] +"%'"  )
     return sqls
-
 
 # calday('2021-07-30', '2021-08-01')

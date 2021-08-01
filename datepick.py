@@ -3,14 +3,14 @@ import datetime
 from flask import Flask, render_template, request
 from cal_day import calday
 
-def datepick(db_password):
+def datepick(db_password, infra, id):
 
     conn = pymysql.connect(
        host='127.0.0.1',
        port=3306,
        user='root',
        password=db_password,
-       db='test')
+       db=infra)
 
     curs = conn.cursor()
 
@@ -21,7 +21,7 @@ def datepick(db_password):
     start = day[0]
     end = day[2]
 
-    sqls = calday( start, end )
+    sqls = calday( start, end, id )
 
     data_list = []
     for sql in sqls: 
@@ -31,6 +31,6 @@ def datepick(db_password):
 
         for obj in row :
             data_list.append( [obj[0],obj[1],obj[2]] )
-            # 날짜, CPU, disk 순서 
+            # 날짜, CPU, mem 순서 
 
     return data_list, start, end

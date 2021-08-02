@@ -26,6 +26,6 @@ common
 - navbar.html  : 사이드 네비 바 관련 html 파일    
 
 run.py  ( flask 실행 파일 )   
-cal_day.py ( 기간 내 db 조회)   
+cal.py ( calday : 기간 내 db 조회 / caltotal : 오늘의 total 인프라 갯수 조회)   
 datepick.py (  )   
 search.py  ( 조회할 인프라 찾아서 오늘 data 조회, db 이름: 인프라명/ table 이름: 개체명 )

@@ -2,13 +2,13 @@
 {%block contents%}
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" id="content">
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Storage Monitoring</h1>
+          <h1 class="m-0">{{id}} Monitoring</h1>
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">
@@ -37,7 +37,7 @@
               <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
                 <!--아이콘-->
-                Storage Latency monitoring
+                Latency monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
@@ -47,7 +47,7 @@
             <div class="card-body">
               <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                <canvas id="CpuChart" height="200"></canvas>
+                <canvas id="LatencyChart" height="200"></canvas>
               </div>
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
@@ -66,7 +66,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
-                Storage IOPS monitoring
+                IOPS monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
@@ -76,7 +76,7 @@
             <div class="card-body">
               <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                <canvas id="DiskChart" height="200"></canvas>
+                <canvas id="IOPSChart" height="200"></canvas>
               </div>
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
@@ -105,7 +105,7 @@
 
   <script src=="/static/plugins/chart/Chart.js"></script>
   <script>
-    var ctx = document.getElementById('CpuChart');
+    var ctx = document.getElementById('IOPSChart');
     const data = '{{data_list}}';
     var z = /&\#39;/gi
     var y = /[\[\]]/gi
@@ -115,14 +115,14 @@
 
     var data_list = nn_data.split(', ')  // 2021-07-23 00:00:00, 10, 34, 2021-07-23 00:00:15, 40, 13
     var my_label = [];
-    var my_cpu_data = [];
+    var my_iops_data = [];
 
     for (let i = 0; i < data_list.length; i++) {
       if (i % 3 == 0) { // 날짜 
         my_label.push(data_list[i].slice(11, 19));
       }
-      else if (i % 3 == 1) { // cpu 
-        my_cpu_data.push(data_list[i]);
+      else if (i % 3 == 1) { //iops
+        my_iops_data.push(data_list[i]);
       }
     }
 
@@ -132,7 +132,7 @@
         labels: my_label,
         datasets: [{
           label: 'cpu data',
-          data: my_cpu_data,
+          data: my_iops_data,
           borderColor: 'rgb(75, 192, 192)',
           borderColor: '#007bff',
           pointBorderColor: '#007bff',
@@ -158,12 +158,12 @@
   </script>
 
   <script>
-    var ctx = document.getElementById('DiskChart');
-    var my_disk_data = [];
+    var ctx = document.getElementById('LatencyChart');
+    var my_latency_data = [];
 
     for (let i = 0; i < data_list.length; i++) {
-      if (i % 3 == 2) { // disk
-        my_disk_data.push(data_list[i]);
+      if (i % 3 == 2) { // LATENCY
+        my_latency_data.push(data_list[i]);
       }
     }
 
@@ -173,7 +173,7 @@
         labels: my_label,
         datasets: [{
           label: 'disk data',
-          data: my_disk_data,
+          data: my_latency_data,
           borderColor: 'rgb(75, 192, 192)',
           backgroundColor: '#ced4da',
           // borderColor: '#ced4da',

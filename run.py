@@ -38,21 +38,23 @@ def index():
 
 # 내가 조회할 장치 id 
 id = str()
+recycle = 0 
 
 # vm page 
 @app.route('/vm_start', methods=['GET'])
 def vmstart():
     global to_day,id
-    today_data_list= search( db_password, zone, 'VM', to_day)
+    global recycle
+    today_data_list, recycle= search( db_password, zone, 'VM', to_day)
     id = request.args.get('id')
-    return render_template('vm_start.html',data_list=today_data_list , today=str(to_day), id=id)
+    return render_template('vm_start.html',data_list=today_data_list , today=str(to_day), id=id, recycle=recycle)
 
 
 @app.route('/vm_lookup', methods=['GET'])
 def vmlookup():
     data_list, start, end = datepick(db_password, zone, 'vm', id)
     print(data_list)
-    return render_template('vm_lookup.html', data_list=data_list , start=start, end=end , id=id)
+    return render_template('vm_lookup.html', data_list=data_list , start=start, end=end , id=id, recycle=recycle)
 
 # vr page
 @app.route('/vr_start')

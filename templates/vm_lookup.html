@@ -8,7 +8,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">{{id}} Monitoring</h1>
+          <h1 class="m-0" style="display:inline">{{id}} Monitoring </h1>
+          <!-- 재시작 하는 vm이면  -->
+          {% if recycle==((1,),) %} 
+          <i class="fas fa-recycle" style="color:#3CB371;"></i>
+          {% endif %}
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">

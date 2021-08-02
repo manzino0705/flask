@@ -15,15 +15,19 @@ def db_connect(db_password, zone, infra, to_day):
     id = str(id)  # vm1 
 
     sql = "select * from "+infra+ " where DATE like '"+ str(to_day)[:10] +"%'" +" and NAME='"+id+"' order by DATE"
-
+    sql2 = "select exists ( select * from vmcare where name = "+"'"+id+"')"
     curs.execute(sql)
     row = curs.fetchall()
-    return row 
+
+    curs.execute(sql2)
+    recycle = curs.fetchall()
+
+    return row , recycle
 
 
 def search(db_password, zone, infra, to_day):
 
-    row = db_connect(db_password, zone, infra, to_day )
+    row, recycle= db_connect(db_password, zone, infra, to_day )
     data_list = []
 
     for obj in row :
@@ -32,5 +36,5 @@ def search(db_password, zone, infra, to_day):
         # DATE | IOPS  | LATENCY 
         # DATE, input bound, output bound 순서 
 
-    return data_list
+    return data_list, recycle 
 

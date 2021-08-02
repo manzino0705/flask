@@ -32,6 +32,10 @@ def index():
     total = caltotal(db_password,zone,to_day)
     return render_template('index.html', total=total , today=str(to_day))
 
+# @app.route('/zone')
+# def zone():
+#     return render_template('zone.html')
+
 # 내가 조회할 장치 id 
 id = str()
 
@@ -122,7 +126,6 @@ def lbstart():
 def lblookup():
     data_list, start, end = datepick(db_password, zone, 'lb',id)
     return render_template('lb_lookup.html', data_list=data_list , start=start, end=end ,id=id)
-
 
 
 

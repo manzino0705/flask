@@ -100,27 +100,6 @@
     <!-- /.container-fluid -->
   </div>
   <!-- /.content -->
-
-  <script type="text/javascript">
-    function capture() {
-        
-        var background = document.getElementById('content').style.background;
-        if(background == "") {
-            document.getElementById('content').style.background = "#fff"; 
-        }
-            
-        html2canvas(document.getElementById('content'), {
-            onrendered: function(canvas) {
-                canvas.toBlob(function(blob) {
-                    saveAs(blob, 'chart.png');
-                });
-            }
-        });
-    }
-    </script>
-
-
-
   <!-- ./wrapper -->
 
   <!-- REQUIRED SCRIPTS -->

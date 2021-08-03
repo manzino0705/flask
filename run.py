@@ -75,13 +75,27 @@ def cnodestart():
     global to_day,id
     today_data_list= search( db_password, zone, 'CNODE', to_day)
     id = request.args.get('id')
-    return render_template('cnode_start.html',data_list=today_data_list , today=str(to_day),id=id)
+    ccpu=0
+    cmem=0
+    for i in today_data_list:
+        if i[4]>=80:
+            cmem +=1
+        if i[5]>=90:
+            ccpu +=1
+    return render_template('cnode_start.html',data_list=today_data_list , today=str(to_day),id=id, ccpu=ccpu, cmem=cmem)
 
 
 @app.route('/cnode_lookup', methods=['GET'])
 def cnodelookup():
     data_list, start, end = datepick(db_password,zone, 'CNODE',id)
-    return render_template('cnode_lookup.html', data_list=data_list , start=start, end=end,id=id )
+    ccpu=0
+    cmem=0
+    for i in data_list:
+        if i[4]>=80:
+            cmem +=1
+        if i[5]>=90:
+            ccpu +=1
+    return render_template('cnode_lookup.html', data_list=data_list , start=start, end=end,id=id, ccpu=ccpu, cmem=cmem)
 
 
 # storage page 

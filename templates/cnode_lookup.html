@@ -52,10 +52,11 @@
                 <canvas id="CpuChart" height="200"></canvas>
               </div>
               <!-- 맨 밑에 주석  -->
-              <div class="d-flex flex-row justify-content-end">
-                <span class="mr-1">
-                  <i class="fas fa-square" style="color:#4B89DC"></i> CPU(%)
-                </span>
+              <h3 class="card-title">
+                조회 기간 중 CPU 이상 감지 횟수 : {{ccpu}}
+              </h3>
+              <div class="card-tools" style="text-align: right;">
+                <i class="fas fa-square" style="color:#4B89DC"></i> CPU(%)
               </div>
             </div>
           </div>
@@ -81,14 +82,14 @@
               <div class="position-relative mb-4">
                 <canvas id="DiskChart" height="200"></canvas>
               </div>
-
-              <!-- 맨 밑에 주석  -->
-              <div class="d-flex flex-row justify-content-end">
-                <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(%)
-                </span>
+              <h3 class="card-title">
+                조회 기간 중 메모리 이상 감지 횟수 : {{cmem}}
+              </h3>
+              <div class="card-tools" style="text-align: right;">
+                <i class="fas fa-square" style="color:#4B89DC"></i> MEM(%)
               </div>
             </div>
+
           </div>
           <!-- /.card -->
         </div>
@@ -148,6 +149,8 @@
       }
       return danger;
     };
+
+    
 
     var visitorsChart = new Chart(ctx, {
       type: 'line',

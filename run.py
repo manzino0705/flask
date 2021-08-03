@@ -1,7 +1,7 @@
 import pymysql
 import datetime
 from flask import Flask, render_template, request
-from cal import calday , caltotal
+from cal import calday , caltotal, calutil
 from datepick import datepick, storage_datepick
 from search import search,storage_search
 
@@ -30,7 +30,9 @@ to_day = datetime.datetime.today()
 def index():
     global to_day
     total = caltotal(db_password,zone,to_day)
-    return render_template('index.html', total=total , today=str(to_day), zone=zone)
+    # utils = calutil(db_password, zone, to_day)
+    utils = [2,4,1,6,4,2]
+    return render_template('index.html', total=total , today=str(to_day), zone=zone, utils=utils)
 
 
 # 내가 조회할 장치 id 

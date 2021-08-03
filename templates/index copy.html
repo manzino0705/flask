@@ -42,7 +42,7 @@
             </table>
           <!-- /.card -->
         </div>
-      </div>
+    </div>
     <br>
 
       <div class="row">
@@ -56,41 +56,9 @@
                   </button>
                 </form>
             </div>
-
+          
             <div class="callout callout-info">
-              <h5><i class="nav-icon fas fa-th"></i> Cnode</h5></a>
-              <form method='GET' action='cnode_start' class="form-inline">
-                <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
-                <button class = 'input-group-text' type='submit' name= 'click' value ="">
-                  <strong>조회</strong>
-                </button>
-              </form>
-            </div>
 
-            <div class="callout callout-info">
-              <h5><i class="nav-icon fas fa-wifi"></i> L2 Switch</h5></a>
-              <form method='GET' action='/nw_start' class="form-inline">
-                <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
-                <button class = 'input-group-text' type='submit' name= 'click' value ="">
-                  <strong>조회</strong>
-                </button>
-              </form>
-            </div>
-        </div>
-
-        <!-- /.card -->
-        <div class="col-lg-4">
-            <div class="callout callout-info">
-              <h5><img src="./static/dist/img/vr.png" width="23" height="23"> VR</h5></a>
-              <form method='GET' action='/vr_start' class="form-inline">
-                <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
-                <button class = 'input-group-text' type='submit' name= 'click' value ="">
-                  <strong>조회</strong>
-                </button>
-              </form>
-            </div>
-
-            <div class="callout callout-info">
               <h5><i class="nav-icon fas fa-database"></i> Storage</h5></a>
               <form method='GET' action='/storage_start' class="form-inline">
                 <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
@@ -99,29 +67,69 @@
                 </button>
               </form>
             </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.card -->
+        <div class="col-lg-4">
+          <div class="callout callout-info">
+            <h5><img src="./static/dist/img/vr.png" width="23" height="23"> VR</h5></a>
+            <form method='GET' action='/vr_start' class="form-inline">
+              <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
+              <button class = 'input-group-text' type='submit' name= 'click' value ="">
+                <strong>조회</strong>
+              </button>
+            </form>
+          </div>
 
-            <div class="callout callout-info">
-              <h5><i class="nav-icon fas fa-network-wired"></i> LoadBalancer</h5></a>
-              <form method='GET' action='/lb_start' class="form-inline">
-                <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
-                <button class = 'input-group-text' type='submit' name= 'click' value ="">
-                  <strong>조회</strong>
-                </button>
-              </form>
-            </div>
+
+          <div class="callout callout-info">
+            <h5><i class="nav-icon fas fa-wifi"></i> L2 Switch</h5></a>
+            <form method='GET' action='/nw_start' class="form-inline">
+              <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
+              <button class = 'input-group-text' type='submit' name= 'click' value ="">
+                <strong>조회</strong>
+              </button>
+            </form>
+          </div>
         </div>
         <!-- /.col-md-6 -->
-
         <div class="col-lg-4">
-            <div class="callout callout-info">
-              <h5 style="display:inline" >Today Utilization</h5><h6 style=" display:inline;color:#ced4da;"> (%)</h6>
-              <canvas id="UseChart" height="230px"></canvas>
-            </a>
-            </div>
+          <div class="callout callout-info">
+            <h5><i class="nav-icon fas fa-th"></i> Cnode</h5></a>
+            <form method='GET' action='cnode_start' class="form-inline">
+              <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
+              <button class = 'input-group-text' type='submit' name= 'click' value ="">
+                <strong>조회</strong>
+              </button>
+            </form>
+          </div>
 
-         </div> 
+
+          <div class="callout callout-info">
+            <h5><i class="nav-icon fas fa-network-wired"></i> LoadBalancer</h5></a>
+            <form method='GET' action='/lb_start' class="form-inline">
+              <input type="text" class="form-control" name='id' placeholder="enter infra ID.." style="color:text-dark;width:300px;">
+              <button class = 'input-group-text' type='submit' name= 'click' value ="">
+                <strong>조회</strong>
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /.col-md-6 -->
       </div>
       <!-- /.row -->
+
+
+      <div class="row">
+
+        <div class="callout callout-info">
+          <h5 style="display:inline" >Today Utilization</h5><h6 style=" display:inline;color:#ced4da;"> (%)</h6>
+          <canvas id="UseChart" width="300px" height="400px"></canvas>
+
+        </a>
+        </div>
+
+      </div>
     </div>
     <!-- /.container-fluid -->
   </div>

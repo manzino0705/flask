@@ -8,7 +8,8 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">{{id}} Monitoring</h1>
+          <h1 class="m-0" style="display:inline;color:rgb(176,17,22)">{{id}}</h1>&nbsp;&nbsp;
+          <h1 class="m-0" style="display:inline"> Current Monitoring</h1>&nbsp;
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">
@@ -40,19 +41,19 @@
                 Input Traffic monitoring
               </h3>
               <div class="card-tools">
-                <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
+                <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{today[:10]}} {{today[11:13]}}시 기준</a>
               </div>
             </div>
 
             <div class="card-body">
               <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                <canvas id="CpuChart" height="200"></canvas>
+                <canvas id="InputChart" height="200"></canvas>
               </div>
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square text-primary"></i> Input Traffic 
+                  <i class="fas fa-square" style="color:#4B89DC"></i>  rate(bps)
                 </span>
               </div>
             </div>
@@ -69,19 +70,19 @@
                 Output Traffic monitoring
               </h3>
               <div class="card-tools">
-                <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
+                <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{today[:10]}} {{today[11:13]}}시 기준</a>
               </div>
             </div>
 
             <div class="card-body">
               <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                <canvas id="DiskChart" height="200"></canvas>
+                <canvas id="OutputChart" height="200"></canvas>
               </div>
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Output Traffic 
+                  <i class="fas fa-square" style="color:#29ab87;"></i> rate(kbps)
                 </span>
               </div>
             </div>
@@ -105,7 +106,7 @@
 
   <script src=="/static/plugins/chart/Chart.js"></script>
   <script>
-    var ctx = document.getElementById('CpuChart');
+    var ctx = document.getElementById('InputChart');
     const data = '{{data_list}}';
     var z = /&\#39;/gi
     var y = /[\[\]]/gi
@@ -131,12 +132,13 @@
       data: {
         labels: my_label,
         datasets: [{
-          label: 'cpu data',
+          label: 'input data',
           data: my_cpu_data,
-          borderColor: 'rgb(75, 192, 192)',
-          borderColor: '#007bff',
-          pointBorderColor: '#007bff',
-          pointBackgroundColor: '#007bff',
+          borderColor: '#4B89DC',
+          backgroundColor: '#4B89DC',
+          // borderColor: '#ced4da',
+          pointBorderColor: '#4B89DC',
+          pointBackgroundColor: '#4B89DC',
           fill: false
         }]
       },
@@ -148,8 +150,8 @@
           yAxes: [{
             display: true, 
             ticks: {
-              beginAtZero: true, 
-              suggestedMax: 100
+              // beginAtZero: true, 
+              suggestedMax: 200
             }
           }]
         }
@@ -158,7 +160,7 @@
   </script>
 
   <script>
-    var ctx = document.getElementById('DiskChart');
+    var ctx = document.getElementById('OutputChart');
     var my_disk_data = [];
 
     for (let i = 0; i < data_list.length; i++) {
@@ -172,7 +174,7 @@
       data: {
         labels: my_label,
         datasets: [{
-          label: 'disk data',
+          label: 'output data',
           data: my_disk_data,
           borderColor: 'rgb(75, 192, 192)',
           backgroundColor: '#ced4da',
@@ -191,7 +193,7 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              suggestedMax: 50
             }
           }]
         }

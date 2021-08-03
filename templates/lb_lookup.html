@@ -8,7 +8,8 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">{{id}} Monitoring</h1>
+          <h1 class="m-0" style="display:inline;color:rgb(176,17,22)">{{id}}</h1>&nbsp;&nbsp;
+          <h1 class="m-0" style="display:inline"> Monitoring</h1>&nbsp;
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">
@@ -40,7 +41,7 @@
                 Sent pkts monitoring
               </h3>
               <div class="card-tools">
-                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
+                <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{start}} ~ {{end[-2:]}}</a>
               </div>
             </div>
       
@@ -52,7 +53,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square text-primary"></i> packets(byte)
+                  <i class="fas fa-square" style="color:#4B89DC"></i> packets(byte)
                 </span>
               </div>
             </div>
@@ -69,7 +70,7 @@
                 Recive pkts monitoring
               </h3>
               <div class="card-tools">
-                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
+                <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{start}} ~ {{end[-2:]}}</a>
               </div>
             </div>
             
@@ -143,10 +144,11 @@
       datasets: [{
         label: 'cpu data',
         data: my_cpu_data,
-        borderColor: 'rgb(75, 192, 192)',
-        borderColor: '#007bff',
-        pointBorderColor: '#007bff',
-        pointBackgroundColor: '#007bff',
+        borderColor: '#4B89DC',
+          backgroundColor: '#4B89DC',
+          // borderColor: '#ced4da',
+          pointBorderColor: '#4B89DC',
+          pointBackgroundColor: '#4B89DC',
         fill: false
       }]
     },
@@ -159,7 +161,7 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              suggestedMax: 30
             }
           }]
         }
@@ -201,7 +203,7 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              suggestedMax: 30
             }
           }]
         }

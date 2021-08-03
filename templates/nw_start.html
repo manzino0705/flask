@@ -127,6 +127,15 @@
       }
     }
 
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
+    
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -140,7 +149,14 @@
           pointBorderColor: '#4B89DC',
           pointBackgroundColor: '#4B89DC',
           fill: false
-        }]
+        },
+        {
+          data: danger(180, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
       options: {
         legend: {
@@ -169,6 +185,15 @@
       }
     }
 
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
+
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -182,7 +207,14 @@
           pointBorderColor: '#ced4da',
           pointBackgroundColor: '#ced4da',
           fill: false
-        }]
+        },
+        {
+          data: danger(45, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
       options: {
         legend: {

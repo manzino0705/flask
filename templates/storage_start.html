@@ -102,7 +102,7 @@
                 MBPS monitoring
               </h3>
               <div class="card-tools">
-                <a href="javascript:void(0);" >{{today[:10]}} {{today[11:13]}}시 기준</a>
+                <a href="javascript:void(0);">{{today[:10]}} {{today[11:13]}}시 기준</a>
               </div>
             </div>
 
@@ -160,6 +160,15 @@
       }
     }
 
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
+
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -173,7 +182,15 @@
           pointBorderColor: '#4B89DC',
           pointBackgroundColor: '#4B89DC',
           fill: false
-        }]
+        },
+        {
+          data: danger(90, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },
+        ]
       },
       options: {
         legend: {
@@ -181,9 +198,9 @@
         },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               // suggestedMax: 100
             }
           }]
@@ -202,6 +219,15 @@
       }
     }
 
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
+    
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -215,7 +241,15 @@
           pointBorderColor: '#ced4da',
           pointBackgroundColor: '#ced4da',
           fill: false
-        }]
+        },
+        {
+          data: danger(9, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },
+        ]
       },
       options: {
         legend: {
@@ -223,9 +257,9 @@
         },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               suggestedMax: 10
             }
           }]
@@ -244,6 +278,15 @@
       }
     }
 
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
+    
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -257,7 +300,14 @@
           pointBorderColor: '#b388ff',
           pointBackgroundColor: '#b388ff',
           fill: false
-        }]
+        },
+        {
+          data: danger(9, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
       options: {
         legend: {
@@ -265,9 +315,9 @@
         },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               suggestedMax: 10
             }
           }]

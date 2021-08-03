@@ -11,7 +11,7 @@
           <h1 class="m-0" style="display:inline;color:rgb(176,17,22)">{{id}}</h1>&nbsp;&nbsp;
           <h1 class="m-0" style="display:inline"> Current Monitoring </h1>&nbsp;
           <!-- 재시작 하는 vm이면  -->
-          {% if recycle==((1,),) %} 
+          {% if recycle==((1,),) %}
           <i class="fas fa-recycle" style="color:#3CB371;"></i>
           {% endif %}
 
@@ -27,14 +27,14 @@
               <button type="submit"> <i class="far fa-calendar"></i></button>
             </div>
           </form>
-          
+
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
   <!-- Main content -->
-  <div class="content" >
+  <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-6">
@@ -72,7 +72,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="far fa-chart-bar"></i>
-                Memory monitoring 
+                Memory monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{today[:10]}} {{today[11:13]}}시 기준</a>
@@ -107,7 +107,7 @@
 
   <!-- OPTIONAL SCRIPTS -->
   <script src="/static/plugins/chart.js/Chart.min.js"></script>
-  
+
   <!-- 차트 그리기  -->
 
   <script src=="/static/plugins/chart/Chart.js"></script>
@@ -132,7 +132,14 @@
         my_cpu_data.push(data_list[i]);
       }
     }
-
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -151,7 +158,14 @@
           pointBorderColor: '#4B89DC',
           pointBackgroundColor: '#4B89DC',
           fill: false
-        }]
+        },
+        {
+          data: danger(45, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
       options: {
         legend: {
@@ -159,16 +173,16 @@
         },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               suggestedMax: 50
             }
           }]
         }
 
       }
-      
+
     });
   </script>
 
@@ -195,7 +209,14 @@
           pointBorderColor: '#ced4da',
           pointBackgroundColor: '#ced4da',
           fill: false
-        }]
+        },
+        {
+          data: danger(45, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
       options: {
         legend: {
@@ -203,9 +224,9 @@
         },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               suggestedMax: 50
             }
           }]

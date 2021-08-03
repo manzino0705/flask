@@ -29,26 +29,27 @@
   </div>
   <!-- /.content-header -->
 
-<!-- Main content -->
-<div class="content">
+  <!-- Main content -->
+  <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <i class="far fa-chart-bar"></i>  <!--아이콘-->
+                <i class="far fa-chart-bar"></i>
+                <!--아이콘-->
                 Sent pkts monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{start}} ~ {{end[-2:]}}</a>
               </div>
             </div>
-      
+
             <div class="card-body">
-            <!-- 차트 그리는 곳  -->
+              <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                  <canvas id="CpuChart" height="200"></canvas>
+                <canvas id="CpuChart" height="200"></canvas>
               </div>
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
@@ -59,28 +60,28 @@
             </div>
           </div>
         </div>
-          <!-- /.card -->
+        <!-- /.card -->
 
         <!-- /.col-md-6 -->
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <i class="far fa-chart-bar"></i>  
+                <i class="far fa-chart-bar"></i>
                 Recive pkts monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);" style="color:rgb(76,76,78)">{{start}} ~ {{end[-2:]}}</a>
               </div>
             </div>
-            
-  
+
+
             <div class="card-body">
-            <!-- 차트 그리는 곳  -->
+              <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                  <canvas id="DiskChart" height="200"></canvas>
+                <canvas id="DiskChart" height="200"></canvas>
               </div>
-  
+
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
@@ -100,114 +101,146 @@
   <!-- /.content -->
 
 
-<!-- REQUIRED SCRIPTS -->
+  <!-- REQUIRED SCRIPTS -->
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="/static/plugins/chart.js/Chart.min.js"></script>
-<!-- AdminLTE for demo purposes -->
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="/static/plugins/chart.js/Chart.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
 
-<!-- 차트 그리기  -->
+  <!-- 차트 그리기  -->
 
 
-<script src=="/static/plugins/chart/Chart.js"></script>
-<script>
-  var ctx = document.getElementById('CpuChart');
-  const data = '{{data_list}}';
-  var z = /&\#39;/gi
-  var y = /[\[\]]/gi
+  <script src=="/static/plugins/chart/Chart.js"></script>
+  <script>
+    var ctx = document.getElementById('CpuChart');
+    const data = '{{data_list}}';
+    var z = /&\#39;/gi
+    var y = /[\[\]]/gi
 
-  n_data = data.replace(z, "");
-  nn_data = n_data.replace(y, "");
+    n_data = data.replace(z, "");
+    nn_data = n_data.replace(y, "");
 
-  var data_list = nn_data.split(', ')  // 2021-07-23 00:00:00, 10, 34, 2021-07-23 00:00:15, 40, 13
-  var my_label = [];
-  var my_cpu_data = [];
+    var data_list = nn_data.split(', ')  // 2021-07-23 00:00:00, 10, 34, 2021-07-23 00:00:15, 40, 13
+    var my_label = [];
+    var my_cpu_data = [];
 
-  for ( let i=0; i< data_list.length; i++){
-    if ( i%3==0 ){ // 날짜 
-      if ( data_list[i].slice(11,19) == '00:00:00'){  // 시작날이면 
-        my_label.push(data_list[i]);
+    for (let i = 0; i < data_list.length; i++) {
+      if (i % 3 == 0) { // 날짜 
+        if (data_list[i].slice(11, 19) == '00:00:00') {  // 시작날이면 
+          my_label.push(data_list[i]);
+        }
+        else {
+          my_label.push(data_list[i].slice(11, 19));
+        }
       }
-      else{
-        my_label.push(data_list[i].slice(11,19));
+      else if (i % 3 == 1) { // cpu 
+        my_cpu_data.push(data_list[i]);
       }
     }
-    else if (i%3==1){ // cpu 
-      my_cpu_data.push(data_list[i]);
-    }
-  }
 
-  var visitorsChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: my_label,
-      datasets: [{
-        label: 'cpu data',
-        data: my_cpu_data,
-        borderColor: '#4B89DC',
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
+
+    var visitorsChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: my_label,
+        datasets: [{
+          label: 'cpu data',
+          data: my_cpu_data,
+          borderColor: '#4B89DC',
           backgroundColor: '#4B89DC',
           // borderColor: '#ced4da',
           pointBorderColor: '#4B89DC',
           pointBackgroundColor: '#4B89DC',
-        fill: false
-      }]
-    },
-    options: {
-      legend: {
-        display: false
+          fill: false
+        },
+        {
+          data: danger(27, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
+      options: {
+        legend: {
+          display: false
+        },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               suggestedMax: 30
             }
           }]
         }
+      }
+    });
+  </script>
+
+  <script>
+    var ctx = document.getElementById('DiskChart');
+    var my_disk_data = [];
+
+    for (let i = 0; i < data_list.length; i++) {
+      if (i % 3 == 2) { // disk
+        my_disk_data.push(data_list[i]);
+      }
     }
-  });
-</script>
 
-<script>
-  var ctx = document.getElementById('DiskChart');
-  var my_disk_data = [];
+    len = my_label.length;
+    function danger(x, len) {
+      var danger = [];
+      for (let i = 0; i < len; i++) {
+        danger.push(x);
+      }
+      return danger;
+    };
 
-  for (let i = 0; i < data_list.length; i++) {
-    if (i % 3 == 2) { // disk
-      my_disk_data.push(data_list[i]);
-    }
-  }
-
-  var visitorsChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: my_label,
-      datasets: [{
-        label: 'disk data',
-        data: my_disk_data,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: '#ced4da',
-        // borderColor: '#ced4da',
-        pointBorderColor: '#ced4da',
-        pointBackgroundColor: '#ced4da',
-        fill: false
-      }]
-    },
-    options: {
-      legend: {
-        display: false
+    var visitorsChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: my_label,
+        datasets: [{
+          label: 'disk data',
+          data: my_disk_data,
+          borderColor: 'rgb(75, 192, 192)',
+          backgroundColor: '#ced4da',
+          // borderColor: '#ced4da',
+          pointBorderColor: '#ced4da',
+          pointBackgroundColor: '#ced4da',
+          fill: false
+        },
+        {
+          data: danger(27, my_label.length),
+          borderColor: 'red',
+          borderWidth: 1,
+          fill: false,
+          pointRadius: 0
+        },]
       },
+      options: {
+        legend: {
+          display: false
+        },
         scales: {
           yAxes: [{
-            display: true, 
+            display: true,
             ticks: {
-              beginAtZero: true, 
+              beginAtZero: true,
               suggestedMax: 30
             }
           }]
         }
-    }
-  });
-</script>
-{%endblock%}
+      }
+    });
+  </script>
+  {%endblock%}

@@ -2,88 +2,87 @@
 {%block contents%}
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" id="content"> 
+<div class="content-wrapper" id="content">
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0"><{{id}}> Monitoring</h1>
+          <h1 class="m-0" style="display:inline;color:#FF7F00">{{id}}</h1>&nbsp;&nbsp;
+          <h1 class="m-0" style="display:inline"> Current Monitoring</h1>&nbsp;
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">
           <!-- Date Range Picker Example-->
           <!-- 달력  -->
-          <form method="GET" action="/vm_lookup">
+          <form method="GET" action="/storage_lookup">
             <div class="input-group input-group-joined" style="width: 16.5rem;">
               <input type=text class="form-control ps-0" id="datepicker" name="m_day"
                 placeholder="Select date range..." />
               <button type="submit"> <i class="far fa-calendar"></i></button>
             </div>
-          </form>
 
+          </form>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
-
-<!-- Main content -->
-<div class="content">
+  <!-- Main content -->
+  <div class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">
-                <i class="far fa-chart-bar"></i>  <!--아이콘-->
-                Latency monitoring
-              </h3>
-              <div class="card-tools">
-                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
-              </div>
-            </div>
-      
-            <div class="card-body">
-            <!-- 차트 그리는 곳  -->
-              <div class="position-relative mb-4">
-                  <canvas id="LatencyChart" height="200"></canvas>
-              </div>
-              <!-- 맨 밑에 주석  -->
-              <div class="d-flex flex-row justify-content-end">
-                <span class="mr-1">
-                  <i class="fas fa-square text-primary"></i> Latency
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-          <!-- /.card -->
-
-        <!-- /.col-md-6 -->
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">
-                <i class="far fa-chart-bar"></i>  
+                <i class="far fa-chart-bar"></i>
+                <!--아이콘-->
                 IOPS monitoring
               </h3>
               <div class="card-tools">
                 <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
               </div>
             </div>
-            
-  
+
             <div class="card-body">
-            <!-- 차트 그리는 곳  -->
+              <!-- 차트 그리는 곳  -->
               <div class="position-relative mb-4">
-                  <canvas id="IOPSChart" height="200"></canvas>
+                <canvas id="IOPSChart" height="200"></canvas>
               </div>
-  
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> IOPS
+                  <i class="fas fa-square text-primary"></i> IOPS
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+
+        <!-- /.col-md-6 -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>
+                Latency monitoring
+              </h3>
+              <div class="card-tools">
+                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <!-- 차트 그리는 곳  -->
+              <div class="position-relative mb-4">
+                <canvas id="LatencyChart" height="200"></canvas>
+              </div>
+              <!-- 맨 밑에 주석  -->
+              <div class="d-flex flex-row justify-content-end">
+                <span class="mr-1">
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Latency(s)
                 </span>
               </div>
             </div>
@@ -93,11 +92,44 @@
         <!-- /.col-md-6 -->
       </div>
       <!-- /.row -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>
+                <!--아이콘-->
+                MBPS monitoring
+              </h3>
+              <div class="card-tools">
+                <a href="javascript:void(0);">{{start}} ~ {{end[-2:]}}</a>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <!-- 차트 그리는 곳  -->
+              <div class="position-relative mb-4">
+                <canvas id="MBPSChart" height="200"></canvas>
+              </div>
+              <!-- 맨 밑에 주석  -->
+              <div class="d-flex flex-row justify-content-end">
+                <span class="mr-1">
+                  <i class="fas fa-square" style="color:#b388ff"></i> MBPS(mb)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.row -->
+
     </div>
     <!-- /.container-fluid -->
   </div>
   <!-- /.content -->
-
+  <!-- ./wrapper -->
 
 
 
@@ -122,10 +154,10 @@
 
   var data_list = nn_data.split(', ')  // 2021-07-23 00:00:00, 10, 34, 2021-07-23 00:00:15, 40, 13
   var my_label = [];
-  var my_cpu_data = [];
+  var my_iops_data = [];
 
   for ( let i=0; i< data_list.length; i++){
-    if ( i%3==0 ){ // 날짜 
+    if ( i%4==0 ){ // 날짜 
       if ( data_list[i].slice(11,19) == '00:00:00'){  // 시작날이면 
         my_label.push(data_list[i]);
       }
@@ -133,8 +165,8 @@
         my_label.push(data_list[i].slice(11,19));
       }
     }
-    else if (i%3==1){ // cpu 
-      my_cpu_data.push(data_list[i]);
+    else if (i%4==1){ // iops
+      my_iops_data.push(data_list[i]);
     }
   }
 
@@ -143,51 +175,10 @@
     data: {
       labels: my_label,
       datasets: [{
-        label: 'cpu data',
-        data: my_cpu_data,
-        borderColor: 'rgb(75, 192, 192)',
+        label: 'iops data',
+        data: my_iops_data,
         borderColor: '#007bff',
-        pointBorderColor: '#007bff',
-        pointBackgroundColor: '#007bff',
-        fill: false
-      }]
-    },
-    options: {
-      legend: {
-        display: false
-      },
-        scales: {
-          yAxes: [{
-            display: true, 
-            ticks: {
-              beginAtZero: true, 
-              suggestedMax: 100
-            }
-          }]
-        }
-    }
-  });
-</script>
-
-<script>
-  var ctx = document.getElementById('LatencyChart');
-  var my_disk_data = [];
-
-  for (let i = 0; i < data_list.length; i++) {
-    if (i % 3 == 2) { // disk
-      my_disk_data.push(data_list[i]);
-    }
-  }
-
-  var visitorsChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: my_label,
-      datasets: [{
-        label: 'disk data',
-        data: my_disk_data,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: '#ced4da',
+        backgroundColor: '#ced4da',  // 회색 
         // borderColor: '#ced4da',
         pointBorderColor: '#ced4da',
         pointBackgroundColor: '#ced4da',
@@ -203,11 +194,96 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              // suggestedMax: 100
             }
           }]
         }
     }
   });
 </script>
+
+<script>
+  var ctx = document.getElementById('LatencyChart');
+  var my_latency_data = [];
+
+  for (let i = 0; i < data_list.length; i++) {
+    if (i % 4 == 2) { // LATENCY
+      my_latency_data.push(data_list[i]);
+    }
+  }
+
+  var visitorsChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: my_label,
+      datasets: [{
+        label: 'disk data',
+        data: my_latency_data,
+        borderColor: 'rgb(75, 192, 192)', // 청록색
+        backgroundColor: '#ced4da',  // 회색 
+        // borderColor: '#ced4da',
+        pointBorderColor: '#ced4da',
+        pointBackgroundColor: '#ced4da',
+        fill: false
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          display: true, 
+          ticks: {
+            beginAtZero: true, 
+            suggestedMax: 10
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+<script>
+  var ctx = document.getElementById('MBPSChart');
+  var my_mbps_data = [];
+
+  for (let i = 0; i < data_list.length; i++) {
+    if (i % 4 == 3) { // MBPS
+      my_mbps_data.push(data_list[i]);
+    }
+  }
+
+  var visitorsChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: my_label,
+      datasets: [{
+        label: 'disk data',
+        data: my_mbps_data,
+        borderColor: '#b388ff',
+        backgroundColor: '#ced4da',  // 회색 
+        // borderColor: '#ced4da',
+        pointBorderColor: '#ced4da',
+        pointBackgroundColor: '#ced4da',
+        fill: false
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          display: true, 
+          ticks: {
+            beginAtZero: true, 
+            suggestedMax: 10
+          }
+        }]
+      }
+    }
+  });
+</script>
+
 {%endblock%}

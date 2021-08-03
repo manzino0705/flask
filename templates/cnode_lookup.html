@@ -8,7 +8,8 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">{{id}} Monitoring</h1>
+          <h1 class="m-0" style="display:inline;color:#FF7F00">{{id}}</h1>&nbsp;&nbsp;
+          <h1 class="m-0" style="display:inline"> Monitoring</h1>&nbsp;
         </div><!-- /.col -->
         <div class="col-sm-3"></div>
         <div class="col-sm-3">
@@ -83,7 +84,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(DB)
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(%)
                 </span>
               </div>
             </div>
@@ -161,7 +162,7 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              suggestedMax: 50
             }
           }]
         }

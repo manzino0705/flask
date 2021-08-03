@@ -14,8 +14,8 @@ def db_connect(db_password, zone, infra, to_day):
     id = request.args.get('id')
     id = str(id)  # vm1 
 
-    sql = "select * from "+infra+ " where DATE like '"+ str(to_day)[:10] +"%'" +" and NAME='"+id+"' order by DATE"
-    sql2 = "select exists ( select * from vmcare where name = "+"'"+id+"')"
+    sql = "select * from "+infra+ " where DATE like '"+ str(to_day)[:10] +"%'" +' and NAME="'+id+'" order by DATE'
+    sql2 = 'select exists ( select * from VMCARE where name = "'+id+'")'
     curs.execute(sql)
     row = curs.fetchall()
 
@@ -33,8 +33,19 @@ def search(db_password, zone, infra, to_day):
     for obj in row :
         data_list.append( [str(obj[0]),obj[2],obj[3]] )
         # DATE, CPU, MEM 순서  
-        # DATE | IOPS  | LATENCY 
         # DATE, input bound, output bound 순서 
 
     return data_list, recycle 
 
+
+def storage_search(db_password, zone, infra, to_day):
+
+    row, recycle= db_connect(db_password, zone, infra, to_day )
+    data_list = []
+
+    for obj in row :
+        data_list.append( [str(obj[0]),obj[2],obj[3],obj[4]] )
+        print(obj)
+        # DATE | IOPS  | LATENCY  |   MBPS
+
+    return data_list, recycle 

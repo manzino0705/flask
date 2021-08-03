@@ -17,7 +17,7 @@ def calday( start, end, infra, id ):
 
     for i in range( int(diff[0])+1 ):
         n_day =  s_day + datetime.timedelta(days=i)
-        sqls.append( "select * from "+infra+" where DATE like '"+ str(n_day)[:10] +"%'"+" and NAME='"+id+"'"  )
+        sqls.append( "select * from "+infra+" where DATE like '"+ str(n_day)[:10] +"%'"+' and NAME="'+id+'" order by DATE'  )
     return sqls
 
 # calday('2021-07-30', '2021-08-01')

@@ -18,10 +18,10 @@
   <!-- Main content -->
   <div class="content">
     <div class="container-fluid">
-      <div class="callout callout-info" style="padding:2% 5%">
-        <h4>Total Resource</h4><br>
+      <div class="callout callout-info" style="padding:2% 3%">
+        <h4>{{zone}} Total Resource</h4><br>
         <div>
-            <table width="100%" style="table-layout:fixed; text-align:center;">
+            <table width="100%" style="table-layout:fixed; text-align:left;">
               <tr>
                 <td><h5 class="text-muted" style="display:inline">VM</h5></td>
                 <td align=center><strong class="h5" style="display:inline">{{total[0][0]}}</strong></td>
@@ -33,7 +33,7 @@
               <tr>
                 <td><h5 class="text-muted" style="display:inline">Storage</h5></td>
                 <td align=center><strong class="h5" style="display:inline">{{total[3][0]}}</strong></td>
-                <td><h5 class="text-muted" style="display:inline">Network</h5></td>
+                <td><h5 class="text-muted" style="display:inline">L2 Switch</h5></td>
                 <td align=center><strong class="h5" style="display:inline">{{total[4][0]}}</strong></td>
                 <td><h5 class="text-muted" style="display:inline">Loadbalancer</h5></td>
                 <td align=center><strong class="h5" style="display:inline">{{total[5][0]}}</strong></td>
@@ -42,6 +42,7 @@
           <!-- /.card -->
         </div>
     </div>
+    <br>
 
       <div class="row">
         <div class="col-lg-4">
@@ -81,7 +82,7 @@
 
 
           <div class="callout callout-info">
-            <h5><i class="nav-icon fas fa-wifi"></i> NetWork</h5></a>
+            <h5><i class="nav-icon fas fa-wifi"></i> L2 Switch</h5></a>
             <form method='GET' action='/nw_start' class="form-inline">
               <input type="text" class="form-control" name='id' placeholder="ID를 입력해주세요." style="color:text-dark;width:300px;">
               <button class = 'input-group-text' type='submit' name= 'click' value ="">

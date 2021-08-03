@@ -8,7 +8,8 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0" style="display:inline">{{id}} Current Monitoring </h1>
+          <h1 class="m-0" style="display:inline;color:#FF7F00">{{id}}</h1>&nbsp;&nbsp;
+          <h1 class="m-0" style="display:inline"> Current Monitoring </h1>&nbsp;
           <!-- 재시작 하는 vm이면  -->
           {% if recycle==((1,),) %} 
           <i class="fas fa-recycle" style="color:#3CB371;"></i>
@@ -86,7 +87,7 @@
               <!-- 맨 밑에 주석  -->
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
-                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(GB)
+                  <i class="fas fa-square" style="color:#29ab87;"></i> Mem(%)
                 </span>
               </div>
             </div>
@@ -155,7 +156,7 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              suggestedMax: 50
             }
           }]
         }
@@ -199,7 +200,7 @@
             display: true, 
             ticks: {
               beginAtZero: true, 
-              suggestedMax: 100
+              suggestedMax: 50
             }
           }]
         }

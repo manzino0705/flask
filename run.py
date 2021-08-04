@@ -77,11 +77,11 @@ def cnodestart():
     id = request.args.get('id')
     ccpu=0
     cmem=0
-    for i in today_data_list:
-        if i[4]>=80:
-            cmem +=1
-        if i[5]>=90:
+    for i in today_data_list[0]:
+        if i[1]>=90:
             ccpu +=1
+        if i[2]>=80:
+            cmem +=1
     return render_template('cnode_start.html',data_list=today_data_list , today=str(to_day),id=id, ccpu=ccpu, cmem=cmem)
 
 
@@ -90,11 +90,11 @@ def cnodelookup():
     data_list, start, end = datepick(db_password,zone, 'CNODE',id)
     ccpu=0
     cmem=0
-    for i in data_list:
-        if i[4]>=80:
-            cmem +=1
-        if i[5]>=90:
+    for i in data_list[0]:
+        if i[1]>=90:
             ccpu +=1
+        if i[2]>=80:
+            cmem +=1
     return render_template('cnode_lookup.html', data_list=data_list , start=start, end=end,id=id, ccpu=ccpu, cmem=cmem)
 
 

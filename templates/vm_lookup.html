@@ -55,13 +55,16 @@
               <div class="position-relative mb-4">
                 <canvas id="CpuChart" height="200"></canvas>
               </div>
-              <!-- 맨 밑에 주석  -->
+
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-1">
                   <i class="fas fa-square" style="color:#4B89DC"></i> CPU(%)
                 </span>
               </div>
+              <!-- 맨 밑에 주석  -->
             </div>
+
+
           </div>
         </div>
         <!-- /.card -->
@@ -93,7 +96,8 @@
                 </span>
               </div>
             </div>
-          </div>
+            
+
           <!-- /.card -->
         </div>
         <!-- /.col-md-6 -->
@@ -153,6 +157,19 @@
       return danger;
     };
     
+    function calculate(val,my_cpu_data){
+      var cnt = 0;
+      for(let i=0;i<len.my_cpu_data;i++){
+        if (my_cpu_data>=val){
+          cnt ++;
+        }
+      }
+      return cnt;
+    };
+    const getValueInput = () =>{
+      cnt = document.getElementById("domTextElement").value; 
+      document.getElementById("valueInput").innerHTML = cnt; 
+    };
     var visitorsChart = new Chart(ctx, {
       type: 'line',
       data: {
@@ -218,11 +235,11 @@
         datasets: [{
           label: 'disk data',
           data: my_disk_data,
-          borderColor: 'rgb(75, 192, 192)',
-          backgroundColor: '#ced4da',
+          borderColor: '#29ab87',
+          backgroundColor: '#29ab87',
           // borderColor: '#ced4da',
-          pointBorderColor: '#ced4da',
-          pointBackgroundColor: '#ced4da',
+          pointBorderColor: '#29ab87',
+          pointBackgroundColor: '#29ab87',
           fill: false
         },
         {

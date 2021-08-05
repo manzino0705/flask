@@ -8,8 +8,8 @@ from search import search,storage_search
 # local DB랑 연결, db 설정 정보 넣기 
 # db name : test , table name : flask 
 
-db_password='gml040708'
-zone = 'm2'
+db_password=''
+zone = 'M2'
 conn = pymysql.connect(
        host='127.0.0.1',
        port=3306,
